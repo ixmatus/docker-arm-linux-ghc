@@ -1,18 +1,9 @@
-----------------------------------------
-GHC 7.8.4 Android cross-compiler for ARM
-----------------------------------------
+--------------------------------------
+GHC 7.8.4 Linux cross-compiler for ARM
+--------------------------------------
 
-Congratulations! You are the proud owner of a GHC ARM cross compilation
-environment.
-
-User
-----
-
-This build environment is built under the user 'androidbuilder' in the
-the home directory /home/androidbuilder
-
-user: androidbuilder
-password: adb
+Congratulations! You are the proud owner of a GHC ARM cross
+compilation environment.
 
 Installed compilers
 -------------------
@@ -21,11 +12,11 @@ There are two versions of the compiler installed.
 
 1. One that targets the host architecture (x86_64)
 
-   ~/.ghc/android-host
+   ~/.ghc/arm-host/bin/ghc
 
 2. One that targets the ARM achitecture
 
-  ~/.ghc/android-14/arm-linux-androideabi-4.8
+  /root/x-tools/arm-plum-linux-gnueabi/bin/arm-plum-linux-gnueabi-ghc
 
 
 Environment variables

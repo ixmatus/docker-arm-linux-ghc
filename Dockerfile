@@ -135,9 +135,9 @@ RUN ./add-paths-to-bashrc.sh
 # Now to clean up the build directory. It takes up a lot of space (3.6G).
 #
 
-WORKDIR /home/androidbuilder
+WORKDIR /root
 RUN rm -rf $BASE
 
-ADD user-scripts/README /home/androidbuilder/
+ADD user-scripts/README /root/README
 RUN cat README
 
