@@ -1,5 +1,5 @@
 BIN_GHC=$(ls ${CROSS}/bin/*gnueabi-ghc)
-BIN_HSC2HS=hsc2hs
+BIN_HSC2HS=$(ls ${CROSS}/bin/*gnueabi-hsc2hs)
 BIN_LD=$(ls ${CROSS}/bin/*gnueabi-ld)
 BIN_STRIP=$(ls ${CROSS}/bin/*gnueabi-strip)
 CC=$(ls ${CROSS}/bin/*gnueabi-gcc)
