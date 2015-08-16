@@ -21,7 +21,8 @@ if [ "$1" = install ] || [ "$1" = configure ] ; then
         --package-db=$PKGDB \
         --hsc2hs-options=--cross-compile \
         --configure-option=--host=${CROSS}_TARGET \
-        "$@"
+        "$@" \
+        -j1
 elif [ "$1" = build ] ; then
     exec $NEW_CABAL \
         --with-gcc=$CC \
@@ -31,7 +32,8 @@ elif [ "$1" = build ] ; then
         --with-hsc2hs=$BIN_HSC2HS \
         --with-strip=$BIN_STRIP \
         --hsc2hs-options=--cross-compile \
-        "$@"
+        "$@" \
+        -j1
 else
     exec $NEW_CABAL "$@"
 fi
