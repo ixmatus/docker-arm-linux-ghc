@@ -1,11 +1,25 @@
-#docker-build-ghc-android
+#docker-arm-linux-ghc
 
-This package contains a Dockerfile and associated scripts to build a
-GHC 7.8.4 cross compiler targeting the ARM architecture. Big thanks go out
-*neuroctye* for the original build script and *joeyh* for additional changes.
+This package contains a Dockerfile and associated scripts to build a GHC 7.8.4 cross compiler targeting the
+ARM architecture. Big thanks go out *neuroctye* for the original build script, *sseefried*
+(https://github.com/sseefried/docker-build-ghc-android) for the original Android docker file and recipes,
+and *joeyh* for additional changes.
 
 You will see some errors in the standard output, some that even look like they might be fatal.
 Stay strong and wait. It will build to the end. If it doesn't please contact me.
+
+## Platform notes
+This is different from the Android build. *Your target must have the same glibc version of your
+cross-compiler toolchain*. Note that the docker container this dockerfile imports is specific to our needs
+at Plum. If you need something different, you should produce your own cross compiler toolchain docker
+container, push it, reference it as an import, and change the necessary environment variables in
+*set-env.sh*.
+
+I've done my best to keep it as general as possible.
+
+## libgmp
+If you're changing the ARM platform you're targeting than the one in here, you should probably generate a
+new gmp constants header. I will describe how to do this in an update soon.
 
 # Installation
 
