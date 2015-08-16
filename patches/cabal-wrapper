@@ -1,0 +1,38 @@
+BIN_GHC=$(ls "${CROSS}/bin/*gnueabi-ghc")
+BIN_HSC2HS=$(ls "${CROSS}/bin/*gnueabi-hsc2hs")
+BIN_LD=$(ls "${CROSS}/bin/*gnueabi-ld")
+BIN_STRIP=$(ls "${CROSS}/bin/*gnueabi-strip")
+CC=$(ls "${CROSS}/bin/*gnueabi-gcc")
+PKGDB=$(echo "${CROSS}/lib/*gnueabi-ghc-*")/package.conf.d
+export HOME="{$CROSS}"
+
+mkdir -p ${CROSS}/cabal
+[ -e "${CROSS}/.cabal" ] || ln -s ${CROSS}/cabal ${CROSS}/.cabal
+
+if [ "$1" = install ] || [ "$1" = configure ] ; then
+    exec $NEW_CABAL \
+        --with-compiler=$BIN_GHC \
+        --with-gcc=$CC \
+        --with-ghc=$BIN_GHC \
+        --with-ghc-pkg=$BIN_GHC-pkg \
+        --with-ld=$BIN_LD \
+        --with-hsc2hs=$BIN_HSC2HS \
+        --with-strip=$BIN_STRIP \
+        --package-db=$PKGDB \
+        --hsc2hs-options=--cross-compile \
+        --configure-option=--host=${CROSS}_TARGET \
+        "$@"
+elif [ "$1" = build ] ; then
+    exec $NEW_CABAL \
+        --with-gcc=$CC \
+        --with-ghc=$BIN_GHC \
+        --with-ghc-pkg=$BIN_GHC-pkg \
+        --with-ld=$BIN_LD \
+        --with-hsc2hs=$BIN_HSC2HS \
+        --with-strip=$BIN_STRIP \
+        --hsc2hs-options=--cross-compile \
+        "$@"
+else
+    exec $NEW_CABAL "$@"
+fi
+
