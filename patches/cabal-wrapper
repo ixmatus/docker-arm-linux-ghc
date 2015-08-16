@@ -1,10 +1,10 @@
-BIN_GHC=$(ls "${CROSS}/bin/*gnueabi-ghc")
-BIN_HSC2HS=$(ls "${CROSS}/bin/*gnueabi-hsc2hs")
-BIN_LD=$(ls "${CROSS}/bin/*gnueabi-ld")
-BIN_STRIP=$(ls "${CROSS}/bin/*gnueabi-strip")
-CC=$(ls "${CROSS}/bin/*gnueabi-gcc")
-PKGDB=$(echo "${CROSS}/lib/*gnueabi-ghc-*")/package.conf.d
-export HOME="{$CROSS}"
+BIN_GHC=$(ls ${CROSS}/bin/*gnueabi-ghc)
+BIN_HSC2HS=hsc2hs
+BIN_LD=$(ls ${CROSS}/bin/*gnueabi-ld)
+BIN_STRIP=$(ls ${CROSS}/bin/*gnueabi-strip)
+CC=$(ls ${CROSS}/bin/*gnueabi-gcc)
+PKGDB=$(echo ${CROSS}/lib/*gnueabi-ghc-*)/package.conf.d
+export HOME="${CROSS}"
 
 mkdir -p ${CROSS}/cabal
 [ -e "${CROSS}/.cabal" ] || ln -s ${CROSS}/cabal ${CROSS}/.cabal
