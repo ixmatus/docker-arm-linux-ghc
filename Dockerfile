@@ -1,5 +1,23 @@
-FROM plumlife/crosstool-ng:gcc-4.9_eglibc-2.21_linux-4.x
+FROM plumlife/crosstool-ng:gcc-4.9_eglibc-2.20
 MAINTAINER parnell@plumlife.com
+
+# Upgrade squeeze to wheezy
+#
+# This is being done here, rather than deriving from a base image
+# because we already use the existing base image for another project
+# and I don't feel like re-building the same cross-compiler toolchain
+# on-top of wheezy at the moment and porting all other downstream
+# containers.
+
+RUN rm -f /etc/apt/sources.list
+RUN echo "deb http://ftp.debian.org/debian/ wheezy main contrib non-free"             > /etc/apt/sources.list
+RUN echo "deb-src http://ftp.debian.org/debian/ wheezy main contrib non-free"         >> /etc/apt/sources.list
+RUN echo "deb http://security.debian.org/ wheezy/updates main contrib non-free"       >> /etc/apt/sources.list
+RUN echo "deb-src http://security.debian.org/ wheezy/updates main contrib non-free"   >> /etc/apt/sources.list
+
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y dist-upgrade
 
 RUN apt-get -y install build-essential curl ghc git libncurses5-dev cabal-install \
   ca-certificates curl file m4 autoconf zlib1g-dev \
