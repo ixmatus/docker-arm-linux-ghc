@@ -1,4 +1,4 @@
-FROM plumlife/crosstool-ng:gcc-4.9_eglibc-2.20
+FROM plumlife/crosstool-ng:gcc-4.9_eglibc-2.21_linux-4.x
 MAINTAINER parnell@plumlife.com
 
 # Upgrade squeeze to wheezy
